@@ -22,12 +22,41 @@ function between(string, start, end) {
 
     return string.slice(startAt, endAt);
 }
-}
 /**
  * Returns an area code from a phone number
  * @param   {string} phoneNum The phone number
  * @returns {string} The area code
  */
+function validPhone(phoneNum) {
+    var phonelength = phoneNum.length;
+    var ifnumber2 = phoneNum.slice(1, 2) + phoneNum.slice(2, 3) + phoneNum.slice(3, 4) + phoneNum.slice(6, 7) + phoneNum.slice(7, 8) + phoneNum.slice(8, 9) + phoneNum.slice(10, 11) + phoneNum.slice(11, 12) + phoneNum.slice(12, 13) + phoneNum.slice(13, 14) + phoneNum.slice(14, 15);
+    var hyphen = phoneNum.charAt(9);
+    var par1 = phoneNum.charAt(0);
+    var par2 = phoneNum.charAt(4);
+    if (phonelength == 14 && ifnumber2 >= 0 && hyphen == "-" && par1 == "(" && par2 == ")") {
+        return true
+    } else {
+        throw new Error("Invalid phone number: " + phoneNum);
+    }
+} catch (e) {
+    throw new Error(error.message);
+    console.log(error.message);
+}
+}
+
+function displayPhone(inputId, outputId) {
+    var input = document.getElementById(inputId1).value;
+    var outputText = "";
+    if (validPhone(input) == true) {
+        outputText = "The number " + input + " is a phone number.";
+        changeElementClass(outputId, "Valid");
+    } else {
+        outputText = "The number " + input + " is not a phone number.";
+        changeElementClass(outputId, "Not valid");
+    }
+    document.getElementById(outputId).innerHTML = outputText;
+}
+
 function getAreaCode(phoneNum) {
 
     var areaCode;
@@ -52,7 +81,7 @@ function getCoCode(phoneNum) {
     try {
         coCode = between(phoneNum, ")", "-");
         coCode = coCode.trim();
-        if (coCode.length = 3 && Number(coCode)) {
+        if (coCode.length == 3 && Number(coCode)) {
             return coCode;
         } else {
             throw new Error("Invalid CO code: " + coCode);
