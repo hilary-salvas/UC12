@@ -1,11 +1,11 @@
 /**
-* Removes part of string between two sub strings
-* @param {string} text The original string
-* @param {string} start The starting string
-* @param {string} end The ending string
-* @return {string} The string in between
-* @throws (Error} If start or end not found
-*/
+ * Removes part of string between two sub strings
+ * @param {string} text The original string
+ * @param {string} start The starting string
+ * @param {string} end The ending string
+ * @return {string} The string in between
+ * @throws (Error} If start or end not found
+ */
 function between(string, start, end) {
     var startAt = string.indexOf(start);
 
@@ -22,6 +22,7 @@ function between(string, start, end) {
 
     return string.slice(startAt, endAt);
 }
+}
 /**
  * Returns an area code from a phone number
  * @param   {string} phoneNum The phone number
@@ -34,34 +35,64 @@ function getAreaCode(phoneNum) {
     try {
         areaCode = between(phoneNum, "(", ")");
         areaCode = areaCode.trim();
-        if(areaCode.length == 3 && Number(areaCode)){
+        if (areaCode.length == 3 && Number(areaCode)) {
             return areaCode;
-        } else{
+        } else {
             throw new Error("Invalid area code: " + areaCode);
         }
     } catch (error) {
         throw new Error("Invalid phone number: " + error.message);
-        console.log(error.message);
-        //return undefined;
+        console.log(error.message)
     }
 }
 
-function getLineCode(phoneNum){
+function getCoCode(phoneNum) {
+    var coCode;
+
+    try {
+        coCode = between(phoneNum, ")", "-");
+        coCode = coCode.trim();
+        if (coCode.length = 3 && Number(coCode)) {
+            return coCode;
+        } else {
+            throw new Error("Invalid CO code: " + coCode);
+        }
+    } catch (e) {
+        throw new Error("Invalid phone number: " + error.message);
+    }
+
+}
+
+function displayCoCode(inputId, outputId) {
+    var outputText = "";
+    var phoneNum = document.getElementById(inputId).value;
+    try {
+        var coCode = getCoCode(phoneNum);
+        outputText = "Your CO code is " + coCode;
+    } catch (error) {
+        console.log(error.message);
+        outputText = error.message;
+    }
+
+    document.getElementById(outputId).innerHTML = outputText;
+}
+
+function getLineCode(phoneNum) {
     var lineCode;
 
-    try{
-        lineCode = between(phoneNum, "-","");
+    try {
+        lineCode = between(phoneNum, "-", "");
         lineCode = lineCode.trim();
-        if(lineCode.length = 4 && Number(lineCode)){
+        if (lineCode.length = 4 && Number(lineCode)) {
             return lineCode;
-        } else{
+        } else {
             throw new Error("Invalid line code: " + lineCode);
         }
-    }catch (error) {
-            throw new Error("Invalid phone number: " + error.message);
+    } catch (error) {
+        throw new Error("Invalid phone number: " + error.message);
 
-        }
- }
+    }
+}
 
 /**
  * Displays the area code for an inputted phone number

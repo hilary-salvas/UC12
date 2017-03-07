@@ -5,9 +5,14 @@ QUnit.test("Test the getAreaCode function.", function (assert) {
 });
 QUnit.test("Errors thrown for getAreaCode", function (assert) {
     assert.throws(function () {
-        getAreCode("415)444-5555");
+        getAreaCode("415)444-5555");
     }, "Missing '('. An error should have been thrown.");
     assert.throws(function () {
-        getAreCode("(415 444-5555");
+        getAreaCode("(415 444-5555");
     }, "Missing ')'. An error should have been thrown.");
+});
+QUnit.test("Test the getCoCode function", function (assert) {
+    var num = "(415) 555-5555";
+    var result = getCoCode(num);
+    assert.deepEqual(result, "555", "Valid CO code test passed.");
 });
