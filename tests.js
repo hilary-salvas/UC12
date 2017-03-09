@@ -1,7 +1,15 @@
 QUnit.test("Test the validPhone function.", function (assert) {
-    var num = "(415) 555-5555)";
+    var num = "(415) 555-5555";
     var result = validPhone(num);
     assert.deepEqual(result, true, "validPhone function passed.")
+});
+QUnit.test("Errors thrown for validPhone", function (assert) {
+    assert.throws(function () {
+        validPhone("(415) 55-555");
+    }, "Invalid phone number: (415) 55-555");
+    assert.throws(function () {
+        validPhone("(abc) efg-hijk");
+    }, "Invalid phone number: (abc) efg-hijk");
 });
 QUnit.test("Test the getAreaCode function.", function (assert) {
     var num = "(415) 555-5555";

@@ -22,38 +22,37 @@ function between(string, start, end) {
 
     return string.slice(startAt, endAt);
 }
-/**
- * Returns an area code from a phone number
- * @param   {string} phoneNum The phone number
- * @returns {string} The area code
- */
-function validPhone(phoneNum) {
-    var phonelength = phoneNum.length;
-    var ifnumber2 = phoneNum.slice(1, 2) + phoneNum.slice(2, 3) + phoneNum.slice(3, 4) + phoneNum.slice(6, 7) + phoneNum.slice(7, 8) + phoneNum.slice(8, 9) + phoneNum.slice(10, 11) + phoneNum.slice(11, 12) + phoneNum.slice(12, 13) + phoneNum.slice(13, 14) + phoneNum.slice(14, 15);
-    var hyphen = phoneNum.charAt(9);
-    var par1 = phoneNum.charAt(0);
-    var par2 = phoneNum.charAt(4);
-    if (phonelength == 14 && ifnumber2 >= 0 && hyphen == "-" && par1 == "(" && par2 == ")") {
-        return true
-    } else {
-        throw new Error("Invalid phone number: " + phoneNum);
+
+function validPhone(b) {
+
+    try {
+        var phonelength = b.length;
+        var ifnumber2 = b.slice(1, 2) + b.slice(2, 3) + b.slice(3, 4) + b.slice(6, 7) + b.slice(7, 8) + b.slice(8, 9) + b.slice(10, 11) + b.slice(11, 12) + b.slice(12, 13) + b.slice(13, 14) + b.slice(14, 15);
+        var hyphen = b.charAt(9);
+        var par1 = b.charAt(0);
+        var par2 = b.charAt(4);
+        if (phonelength == 14 && ifnumber2 >= 0 && hyphen == "-" && par1 == "(" && par2 == ")") {
+            return true;
+        } else {
+            throw new Error("Invalid phone number: " + b);
+        }
+    } catch (error) {
+        throw new Error("Invalid: " + error.message);
     }
-} catch (e) {
-    throw new Error(error.message);
-    console.log(error.message);
-}
 }
 
-function displayPhone(inputId, outputId) {
-    var input = document.getElementById(inputId1).value;
-    var outputText = "";
-    if (validPhone(input) == true) {
-        outputText = "The number " + input + " is a phone number.";
-        changeElementClass(outputId, "Valid");
-    } else {
-        outputText = "The number " + input + " is not a phone number.";
-        changeElementClass(outputId, "Not valid");
+function displayValidPhone(inputId, outputId) {
+    var outputText = ""
+    var phoneNum = document.getElementById(inputId).value;
+    try {
+        if (validPhone(phoneNum) == true) {
+            outputText = "Your phone number is valid.";
+        }
+    } catch (error) {
+        console.log(error.message);
+        outputText = error.message;
     }
+
     document.getElementById(outputId).innerHTML = outputText;
 }
 
