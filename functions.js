@@ -116,7 +116,7 @@ function getLineCode(phoneNum) {
         } else {
             throw new Error("Invalid line code: " + lineCode);
         }
-    } catch (error) {
+    } catch (e) {
         throw new Error("Invalid phone number: " + error.message);
 
     }
