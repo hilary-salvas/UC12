@@ -6,7 +6,7 @@
 * @return {string} The string in between
 * @throws (Error} If start or end not found
 */
-function between(string, start, end) {
+ function between(string, start, end) {
     var startAt = string.indexOf(start);
 
     if (startAt == -1) {
