@@ -1,3 +1,8 @@
+QUnit.test("Test the validPhone function.", function (assert) {
+    var num = "(415) 555-5555)";
+    var result = validPhone(num);
+    assert.deepEqual(result, true, "validPhone function passed.")
+});
 QUnit.test("Test the getAreaCode function.", function (assert) {
     var num = "(415) 555-5555";
     var result = getAreaCode(num);
@@ -16,7 +21,6 @@ QUnit.test("Test the getCoCode function", function (assert) {
     var result = getCoCode(num);
     assert.deepEqual(result, "555", "Valid CO code test passed.");
 });
-
 QUnit.test("Errors thrown for getCoCode", function (assert) {
     assert.throws(function () {
         getCoCode("(415) 55-5555");
