@@ -37,3 +37,16 @@ QUnit.test("Errors thrown for getCoCode", function (assert) {
         getCoCode("(415) abc-5555");
     }, "Invalid CO code: abc");
 });
+QUnit.test("Test the getLineCode function", function (assert) {
+    var num = "(415) 555-5555";
+    var result = getLineCode(num);
+    assert.deepEqual(result, "5555", "Valid line code test passed.");
+});
+QUnit.test("Errors thrown for getLineCode", function (assert) {
+    assert.throws(function () {
+        getLineCode("(415) 555-555");
+    }, "Invalid line code: 555");
+    assert.throws(function () {
+        getLineCode("(415) 555-abcd");
+    }, "Invalid line code: abcd");
+});
