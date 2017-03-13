@@ -22,6 +22,37 @@ function between(string, start, end) {
 
     return string.slice(startAt, endAt);
 }
+
+function validPhone(b) {
+    try {
+        var phonelength = b.length;
+        var ifnumber2 = b.slice(1, 2) + b.slice(2, 3) + b.slice(3, 4) + b.slice(6, 7) + b.slice(7, 8) + b.slice(8, 9) + b.slice(10, 11) + b.slice(11, 12) + b.slice(12, 13) + b.slice(13, 14) + b.slice(14, 15);
+        var hyphen = b.charAt(9);
+        var par1 = b.charAt(0);
+        var par2 = b.charAt(4);
+        if (phonelength == 14 && ifnumber2 >= 0 && hyphen == "-" && par1 == "(" && par2 == ")") {
+            return true;
+        } else {
+            throw new Error("Invalid phone number: " + b);
+        }
+    } catch (error) {
+        throw new Error("Invalid: " + error.message);
+    }
+}
+
+function displayValidPhone(inputId, outputId) {
+    var outputText = ""
+    var phoneNum = document.getElementById(inputId).value;
+    try {
+        if (validPhone(phoneNum) == true) {
+            outputText = "Your phone number is valid.";
+        }
+    } catch (error) {
+        console.log(error.message);
+        outputText = error.message;
+    }
+    document.getElementById(outputId).innerHTML = outputText;
+}
 /**
  * Returns an area code from a phone number
  * @param   {string} phoneNum The phone number
@@ -44,6 +75,57 @@ function getAreaCode(phoneNum) {
         console.log(error.message);
         //return undefined;
     }
+}
+
+function getCoCode(phoneNum) {
+
+    var coCode;
+
+
+    try {
+
+        coCode = between(phoneNum, ")", "-");
+
+        coCode = coCode.trim();
+
+        if (coCode.length == 3 && Number(coCode)) {
+
+            return coCode;
+
+        } else {
+
+            throw new Error("Invalid CO code: " + coCode);
+
+        }
+
+    } catch (error) {
+
+        throw new Error("Invalid phone number: " + error.message);
+
+    }
+
+}
+
+
+function displayCoCode(inputId, outputId) {
+
+    var outputText = "";
+
+    var phoneNum = document.getElementById(inputId).value;
+
+    try {
+
+        var coCode = getCoCode(phoneNum);
+
+        outputText = "Your CO code is " + coCode;
+
+    } catch (error) {
+
+        console.log(error.message);
+        outputText = error.message;
+        //return undefined;
+    }
+    document.getElementById(outputId).innerHTML = outputText;
 }
 
 function getLineCode(phoneNum) {
