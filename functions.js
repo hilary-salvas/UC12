@@ -123,7 +123,6 @@ function displayCoCode(inputId, outputId) {
 
         console.log(error.message);
         outputText = error.message;
-        //return undefined;
     }
     document.getElementById(outputId).innerHTML = outputText;
 }
