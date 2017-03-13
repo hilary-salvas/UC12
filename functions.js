@@ -23,6 +23,12 @@ function between(string, start, end) {
     return string.slice(startAt, endAt);
 }
 
+/**
+ * Checks a phone number in the format (###) ###-####
+ * @throws {Error} Throws error for an invalid phone number
+ * @param   {string}  b The phone number
+ * @returns {boolean} returns true or false
+ */
 function validPhone(b) {
     try {
         var phonelength = b.length;
@@ -40,6 +46,11 @@ function validPhone(b) {
     }
 }
 
+/**
+ * Display function for validPhone
+ * @param {string} inputId  The inputted phone number
+ * @param {string} outputId The results of validPhone test
+ */
 function displayValidPhone(inputId, outputId) {
     var outputText = ""
     var phoneNum = document.getElementById(inputId).value;
@@ -55,6 +66,7 @@ function displayValidPhone(inputId, outputId) {
 }
 /**
  * Returns an area code from a phone number
+ * @throws {Error} throws error for an invalid area code if code is not a number or 3 characters
  * @param   {string} phoneNum The phone number
  * @returns {string} The area code
  */
@@ -77,6 +89,12 @@ function getAreaCode(phoneNum) {
     }
 }
 
+/**
+ * Gets CO code from the user's inputted phone number
+ * @throws {Error} Throws error for an invalid co code
+ * @param   {string} phoneNum phone number input
+ * @returns {string} The error or the valid co code
+ */
 function getCoCode(phoneNum) {
 
     var coCode;
@@ -107,6 +125,11 @@ function getCoCode(phoneNum) {
 }
 
 
+/**
+ * Display function for getCoCode
+ * @param {string} inputId  the phone number
+ * @param {string} outputId the display of the CoCode or error message
+ */
 function displayCoCode(inputId, outputId) {
 
     var outputText = "";
@@ -127,6 +150,12 @@ function displayCoCode(inputId, outputId) {
     document.getElementById(outputId).innerHTML = outputText;
 }
 
+/**
+ * Gets line code from phone number
+ * @throws {Error} Errror for an invalid line code
+ * @param   {string} phoneNum the phone number
+ * @returns {string} line code or error message
+ */
 function getLineCode(phoneNum) {
     var lineCode;
 
