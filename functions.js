@@ -132,9 +132,9 @@ function getLineCode(phoneNum) {
     var lineCode;
 
     try {
-        lineCode = between(phoneNum, "-", "");
+        lineCode = phoneNum.slice(10);
         lineCode = lineCode.trim();
-        if (lineCode.length = 4 && Number(lineCode)) {
+        if (lineCode.length == 4 && Number(lineCode)) {
             return lineCode;
         } else {
             throw new Error("Invalid line code: " + lineCode);
